@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 const rp = require('request-promise');
 
 cloud.init()
-let requestUrl = `https://v.douyin.com/JPcUaC2/`
+//let requestUrl = `https://v.douyin.com/JPcUaC2/`
 
 let send = {
   'Error:':'查询失败',
@@ -17,7 +17,7 @@ const videourl = async (url)=>{
   url = url.replace(/wm/g,'');
   return await new Promise(resolve=>{
    rp(url,(error, response, body) => {
-       resolve(response.request.href)
+      resolve(response.request.href)
    })
   })
 }
@@ -35,6 +35,7 @@ const httpString = (s) =>{
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  let requestUrl = event.url
     let watermark = await new Promise(resolve=>{
       rp(requestUrl,(error, response, body) => {
       if (!error && response.statusCode == 200) {
