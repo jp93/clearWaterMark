@@ -1,0 +1,11 @@
+/* miniprogram/pages/praise/praise.wxss */ 
+.content{
+  width: 100%;
+  text-align: justify;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+page{
+  background-color: #f2f2f2;
+  line-height: 60rpx;
+}

@@ -2,6 +2,8 @@
 
 //index.js
 const app = getApp()
+import Notify from '@vant/weapp/notify/notify';
+import handleDownload from '../../utils/authorize.js';
 
 Page({
   data: {
@@ -12,7 +14,8 @@ Page({
     duration: 500,
     inputValue:"",
     timer: null ,
-    loading:false
+    loading:false,
+    url:''
   },
 
   onLoad: function() {
@@ -21,14 +24,71 @@ Page({
 
 
   },
+  onShow(){
+    let self = this
+    wx.getClipboardData({
+      success:(res)=>{
+        console.log(res.data)
+        if(!res.data.trim()){
+          return
+        }
+        let getUrl = this.httpString(res.data)
+        if(!getUrl){
+          return
+        }
+        wx.showModal({
+          title: '是否获取剪切板中的链接资源',
+          content: getUrl,
+          success :(result)=>{
+            if (result.confirm) {
+              this.setData({
+                inputValue:getUrl,
+                url:''
+              })
+              
+            } else if (result.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+
+      }
+    })
+  },
+  onShareAppMessage(){
+    return {
+      title: '抖音一键去水印，永久免费！',
+      imageUrl:"/static/1.jpg"
+    }
+  },
   bindChangeInput(e){
     this.setData({
       inputValue: e.detail.value
     })
 
   },
+  httpString(s){
+    let reg = /(https?|http|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/g;
+    try {
+        return s.match(reg)[0];
+    } catch (error) {
+        return null;
+    }
+ },
   submit() {
     console.log('点击')
+    if(!this.data.inputValue){
+      Notify({ type: 'warning', message: '请先复制需要解析的视频链接',background:"#1989fa" });
+      return
+
+    }
+    if(!this.httpString(this.data.inputValue)){
+      Notify({ type: 'warning', message: '复制的地址链接不正确,请检查后重试！',background:"#1989fa" });
+      return
+
+    }
+
+   
     if(this.data.loading){
       return
     }
@@ -51,8 +111,16 @@ Page({
       success: res => {
         wx.hideLoading()
         console.log('[云函数水印]', res)
-        wx.navigateTo({
-          url: `/pages/video/video?url=${res.result.video}`,
+        let globalData = getApp().globalData
+        if (res.result.video) {
+          globalData.url = res.result.video
+        }
+        // wx.navigateTo({
+        //   url: `/pages/video/video`,
+        // })
+  
+        this.setData({
+          url:res.result.video
         })
 
 
@@ -62,7 +130,7 @@ Page({
         })
       },
       fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
+        console.error('解析失败', err)
         wx.hideLoading()
         this.setData({
           loading:false
@@ -71,5 +139,18 @@ Page({
       }
     })
 
-  }
+  },
+  saveVideo() {
+    handleDownload(this.data.url)
+  },
+  setClipboardData() {
+    wx.setClipboardData({
+      data:this.data.url
+    })
+  },
+  toManual(){
+    wx.navigateTo({
+      url: '/pages/manual/manual',
+    })
+  },
 })

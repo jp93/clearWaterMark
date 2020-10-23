@@ -35,7 +35,7 @@ const httpString = (s) =>{
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let requestUrl = event.url
+    let requestUrl =httpString(event.url) 
     let watermark = await new Promise(resolve=>{
       rp(requestUrl,(error, response, body) => {
       if (!error && response.statusCode == 200) {
@@ -61,7 +61,8 @@ exports.main = async (event, context) => {
             let data = result.item_list[0];
             //视频url解析
             let video = await videourl(data['video']["play_addr"]["url_list"][0]);
-            // 拼接返回指定数据
+            //let video = data['video']["play_addr"]["url_list"][0].replace('playwm','play')
+            // 拼接返回指定数
              let r = {
               'title':data["share_info"]["share_title"],
               'cover':data['video']["origin_cover"]["url_list"][0],

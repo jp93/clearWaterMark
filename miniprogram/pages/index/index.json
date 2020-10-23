@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-notify": "@vant/weapp/notify/index"
+  },
   "navigationBarTitleText": "抖音一键去水印"
 }

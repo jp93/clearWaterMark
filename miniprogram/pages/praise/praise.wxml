@@ -1,0 +1,9 @@
+<van-panel style="background:#fff" title="1.解析视频失败">
+  <view class="content">可能视频被作者屏蔽删除或者设置为了私密视频。</view>
+</van-panel>
+<van-panel title="2.保存视频失败">
+  <view class="content">由于微信限制，超过15M的视频不能下载，安卓用户可以点击复制无水印链接用浏览器打开即可下载，苹果用户复制无水印链接后需要下载软件documents软件才能在浏览器下载，或直接在电脑浏览器下载。</view>
+</van-panel>
+<van-panel title="3.联系客户">
+  <view class="content">使用永久免费，遇见问题或有新的需求，需要制作同款小程序也可以联系客服。</view>
+</van-panel>

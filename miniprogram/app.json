@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/video/video"
+    "pages/my/my",
+    "pages/manual/manual",
+    "pages/praise/praise"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -11,5 +13,25 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "selectedIconPath": "/static/indexed.png",
+        "iconPath": "/static/index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "selectedIconPath": "/static/myed.png",
+        "iconPath": "/static/my.png",
+        "text": "帮助中心"
+      }
+    ],
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "selectedColor": "#444B8B",
+    "color": "#000"
+  }
 }

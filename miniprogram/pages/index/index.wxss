@@ -5,7 +5,8 @@ page {
 }
 swiper{
   width:100%;
-  height:220px;
+  height:210px;
+  background-color: #fff;
 }
 .input-wrap{
   display: flex;
@@ -18,8 +19,8 @@ swiper{
   margin-top: 10px;
 
 }
-.input-wrap .submit{
-  width: 70px;
+.submit{
+  width: 90%;
   height: 80%;
   background-color: #1989fa;
   border-radius: 5px;
@@ -29,7 +30,7 @@ swiper{
   align-items: center;
   color: #fff;
   font-size: 14px;
-  margin-left: 10px;
+  margin-top: 5px;
   
 }
 .input-wrap input{
@@ -39,4 +40,35 @@ swiper{
   border-radius: 20px;
   padding:  0 10px;
   
+}
+video{
+  width: 90%;
+  height: 220px;
+  margin-top: 10px;
+}
+.tips{
+  width: 100%;
+  padding: 10px 18px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: right;
+  color: #777;
+}
+.tips{
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  box-sizing: border-box;
+  line-height: 60rpx;
+  
+
+
+}
+.tips .title{
+  width: 100%;
+  text-align: left;
+}
+.tips .content{
+  width: 100%;
+  text-align: justify;
 }
