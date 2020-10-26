@@ -29,7 +29,8 @@
 <van-notify  style="width:100%" id="van-notify" />
 <video wx:if="{{url}}" controls autoplay src="{{url}}"></video>
 <view style="padding:2rpx 30rpx" wx:if="{{url}}" class="tips" bindtap="setClipboardData">复制无水印链接</view>
-<van-button wx:if="{{url}}" bindtap="saveVideo" class="submit"   type="info">保存到相册</van-button>
+<!-- <van-button wx:if="{{url}}" bindtap="saveVideo" class="submit"   type="info">保存到相册</van-button> -->
+<van-button wx:if="{{url}}" bindtap="forwardVideo" class="submit"   type="info">保存到相册</van-button>
 
 
 </view>

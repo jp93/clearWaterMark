@@ -1,19 +1,15 @@
-export default function handleDownload(url) {
-  if(!url){
+export default function handleDownload(fileID) {
+  if(!fileID){
     return
   }
-  url = url.replace(/http/,'https')
-  let link = url
+  console.log('fileID',fileID)
+
   let fileName = new Date().valueOf();
-  wx.showLoading({
-    title:"下载中..."
-  })
-  wx.downloadFile({
-    url: link,
-    filePath: wx.env.USER_DATA_PATH + '/' + fileName + '.mp4',
+  const downloadTask = wx.cloud.downloadFile({
+    fileID: fileID,
     success: res => {
       console.log(res);
-      let filePath = res.filePath;
+      let filePath = res.tempFilePath;
       wx.saveVideoToPhotosAlbum({
         filePath,
         success: file => {
@@ -26,8 +22,20 @@ export default function handleDownload(url) {
           fileMgr.unlink({
             filePath: wx.env.USER_DATA_PATH + '/' + fileName + '.mp4',
             success: function (r) {
-
             },
+          })
+          //下载成功后从云端删除
+          wx.cloud.callFunction({
+            name: 'deleteVideo',
+            data: {
+              fileID: fileID,
+            },
+            success: res => {
+              
+            },
+            fail: err => {
+          
+            }
           })
         },
         fail: err => {
@@ -61,5 +69,11 @@ export default function handleDownload(url) {
         }
       })
     }
+  })
+  downloadTask.onProgressUpdate((res) => {
+    console.log('下载进度', res.progress)
+    wx.showLoading({
+      title:`下载中...${res.progress}%`
+    })
   })
 }

@@ -111,10 +111,6 @@ Page({
       success: res => {
         wx.hideLoading()
         console.log('[云函数水印]', res)
-        let globalData = getApp().globalData
-        if (res.result.video) {
-          globalData.url = res.result.video
-        }
         // wx.navigateTo({
         //   url: `/pages/video/video`,
         // })
@@ -153,4 +149,24 @@ Page({
       url: '/pages/manual/manual',
     })
   },
+  forwardVideo() {
+    wx.showLoading()
+    
+    wx.cloud.callFunction({
+      name: 'forwardVideo',
+      data: {
+        url:this.data.url
+      },
+      success: res => {
+        console.log('转寄', res)
+        let fileID = res.result.fileID
+        handleDownload(fileID)
+      },
+      fail: err => {
+        wx.hideLoading()
+        console.log('转寄失败',err)
+      }
+    })
+
+  }
 })
