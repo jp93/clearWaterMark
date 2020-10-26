@@ -5,6 +5,7 @@ export default function handleDownload(fileID) {
   console.log('fileID',fileID)
 
   let fileName = new Date().valueOf();
+
   const downloadTask = wx.cloud.downloadFile({
     fileID: fileID,
     success: res => {
