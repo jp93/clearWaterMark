@@ -3,12 +3,13 @@
   <swiper indicator-dots="{{indicatorDots}}"
   indicator-active-color="#fff"
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper-item>
+        <image style="width:100%" mode="aspectFit" src="/static/2.jpg"/>
+      </swiper-item>
       <swiper-item>
         <image style="width:100%" mode="aspectFit" src="/static/1.jpg"/>
       </swiper-item>
-      <swiper-item>
-        <image style="width:100%" mode="aspectFit" src="/static/2.jpg"/>
-      </swiper-item>
+    
   </swiper>
 
   <!-- <view class="input-wrap">

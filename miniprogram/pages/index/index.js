@@ -58,7 +58,7 @@ Page({
   onShareAppMessage(){
     return {
       title: '抖音一键去水印，永久免费！',
-      imageUrl:"/static/1.jpg"
+      imageUrl:"/static/2.jpg"
     }
   },
   bindChangeInput(e){

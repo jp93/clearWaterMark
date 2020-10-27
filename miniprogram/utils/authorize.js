@@ -69,6 +69,13 @@ export default function handleDownload(fileID) {
           }
         }
       })
+    },fail(res){
+      console.log('res',res)
+      wx.showToast({
+        title: '超过微信最大下载下载，建议复制无水印链接去浏览器下载',
+        icon:'none',
+        duration:2000
+      })
     }
   })
   downloadTask.onProgressUpdate((res) => {
