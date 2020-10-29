@@ -31,6 +31,7 @@ swiper{
   color: #fff;
   font-size: 14px;
   margin-top: 5px;
+  margin-bottom: 30rpx;
   
 }
 .input-wrap input{

@@ -18,3 +18,4 @@
   <van-cell bindtap="toPraise" title="分享给好友" is-link />
   <button class="button" open-type="share"></button>
 </view>
+

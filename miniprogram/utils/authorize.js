@@ -19,28 +19,17 @@ export default function handleDownload(fileID) {
             icon: 'success',
             duration: 2000
           })
-          let fileMgr = wx.getFileSystemManager();
-          fileMgr.unlink({
-            filePath: wx.env.USER_DATA_PATH + '/' + fileName + '.mp4',
-            success: function (r) {
-            },
-          })
-          //下载成功后从云端删除
-          wx.cloud.callFunction({
-            name: 'deleteVideo',
-            data: {
-              fileID: fileID,
-            },
-            success: res => {
-              
-            },
-            fail: err => {
-          
-            }
-          })
+          // let fileMgr = wx.getFileSystemManager();
+          // fileMgr.unlink({
+          //   filePath: wx.env.USER_DATA_PATH + '/' + fileName + '.mp4',
+          //   success: function (r) {
+          //   },
+          // })
+    
         },
         fail: err => {
           console.log(err)
+          
           if (err.errMsg === 'saveVideoToPhotosAlbum:fail auth deny') {
             wx.showModal({
               title: '提示',
@@ -83,5 +72,20 @@ export default function handleDownload(fileID) {
     wx.showLoading({
       title:`下载中...${res.progress}%`
     })
+    if(res.progress === 100){
+            //下载成功后从云端删除
+      wx.cloud.callFunction({
+        name: 'deleteVideo',
+        data: {
+          fileID: fileID,
+        },
+        success: res => {
+          
+        },
+        fail: err => {
+      
+        }
+      })
+    }
   })
 }
