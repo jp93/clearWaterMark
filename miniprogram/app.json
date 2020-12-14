@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/my",
     "pages/manual/manual",
-    "pages/praise/praise"
+    "pages/praise/praise",
+    "pages/copywriting/copywriting"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

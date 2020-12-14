@@ -17,9 +17,7 @@ Page({
       this.setData({
         url:globalData.url
       })
-    }
-  
-    
+    }   
 
   },
 
@@ -84,6 +82,12 @@ Page({
   toPraise(){
     wx.navigateTo({
       url: '/pages/praise/praise',
+    })
+  },
+  toCopyWriting() {
+    console.log(11)
+    wx.navigateTo({
+      url: '/pages/copywriting/copywriting'
     })
   }
 })

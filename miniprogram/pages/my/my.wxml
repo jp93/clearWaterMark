@@ -8,6 +8,9 @@
     </view>
   </view>
 </view>
+<view class="contact-wrap">
+  <van-cell bindtap="toCopyWriting" title="朋友圈文案生成器" is-link />
+</view>
 <van-cell bindtap="toManual" title="使用教程" is-link />
 <van-cell bindtap="toPraise" title="注意事项" is-link />
 <view class="contact-wrap">

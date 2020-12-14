@@ -36,6 +36,10 @@ Page({
         if(!getUrl){
           return
         }
+        if(getUrl === this.data.inputValue){
+          return
+        }
+ 
         wx.showModal({
           title: '是否获取剪切板中的链接资源',
           content: getUrl,

@@ -1,0 +1,17 @@
+<view class="page">
+  <view  class="content">
+    <text>{{list[index]}}</text>
+    <van-divider />
+</view>
+<view class="footer">
+  <view class="share">分享
+   <button class="share-button" open-type="share"></button>
+   </view>
+  <view bindtap="loadUp">上一条</view>
+  <view class="copy" bindtap="copyText">复制</view>
+  <view bindtap="loadNext">换一条</view>
+</view>
+
+</view>
+
+
